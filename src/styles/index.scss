@@ -1,0 +1,13 @@
+@import "./main.scss";
+
+// base
+@import "./base/base";
+// components
+@import "./components/input";
+@import "./components/tables";
+@import "./components/ImageCardGrid";
+// abstract
+@import "./abstract/variable";
+
+//page
+@import "./pageStyle/saidMenu";

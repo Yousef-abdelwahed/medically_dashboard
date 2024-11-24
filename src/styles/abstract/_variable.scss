@@ -1,0 +1,39 @@
+// primary
+$primary-color: #ef7d00;
+$light-color: #fffbf5;
+$dark-color: #131312;
+//liner-colors
+$gradient-paragraph: linear-gradient(
+  273deg,
+  rgba(255, 247, 238, 0.9) -1.75%,
+  rgba(255, 247, 238, 0.8) 100%
+);
+$gradient-footer: linear-gradient(
+  92deg,
+  #ef7d00 0%,
+  rgba(255, 172, 82, 0.9) 100%
+);
+// shadow-box
+$shadow-effects: 2px 4px 4px 0px rgba(0, 0, 0, 0.1);
+$color-grey-dark: #777;
+$color-white: #fff;
+$color-black: #000;
+$color-grey-light-1: #f7f7f7;
+
+// grid variables
+$grid-width: 114rem;
+$grid-vertical: 8rem;
+$grid-horizontal: 6rem;
+
+// border-radius
+$radius-small: 0rem 0.9375rem;
+$radius-medium: 0rem 1.25rem;
+$radius-large: 0rem 3.125rem;
+// box-shadow
+$box-shadow-service-cards: 2px 5px 15.4px 2px rgba(99, 128, 221, 0.2);
+
+$padding-xSmall: 32;
+$padding-small: 40;
+$padding-medium: 57;
+$padding-large: 70;
+$padding-big: 80;
