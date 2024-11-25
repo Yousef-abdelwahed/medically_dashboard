@@ -20,16 +20,18 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { niaLogo } from "../../../assets";
 import LogoutButton from "../../LogoutButton/LogoutButton";
+import { customIcon } from "../../../assets/icons/customIcon";
 
 const navLinks = [
   {
     page: "home",
-    url: "/home",
-    subLinks: [{ name: "Home", url: "group/home" }],
+    url: "/dashboard/home",
+    icon: customIcon.sideIcon.home,
   },
   {
     page: "requests",
-    url: "/requests",
+    url: "/dashboard/requests",
+    icon: customIcon.sideIcon.requests,
   },
 ];
 
@@ -49,6 +51,7 @@ const Sidebar = () => {
         top="4"
         left="4"
         zIndex="1000"
+        className="md:hidden"
       />
 
       {/* Sidebar for larger screens */}
@@ -57,23 +60,48 @@ const Sidebar = () => {
         minH="100vh"
         bg="white"
         display={{ base: "none", md: "block" }} // Hide on small screens
-        className="said_menu flex flex-col justify-between h-screen "
+        className="said_menu_large_screen flex flex-col justify-between h-screen shadow-md max-md:hidden "
       >
         <nav className="  h-[80vh] flex flex-col justify-between bg-dark">
-          <Box as="figure" marginBottom="10px" className="">
-            <Image src={niaLogo} alt="NIA Logo" width={70} />
+          <Box
+            as="figure"
+            marginBottom="5px"
+            className="font-medium capitalize text-[#223A84]"
+          >
+            <h2 className="ps-4 py-6 capitalize text-xl text-[#223A84] mb-[4.5rem]">
+              dashboard
+            </h2>
 
-            {navLinks?.map((link) => (
-              <Box
-                flex="1"
-                textAlign="left"
-                padding={"23px"}
-                fontSize={20}
-                className={`   `}
-                key={link.page}
+            {navLinks?.map((link, index) => (
+              <NavLink
+                key={index}
+                to={link.url}
+                style={({ isActive }) => ({
+                  display: "block",
+                  padding: "0px",
+                  fontSize: "18px",
+                  backgroundColor: isActive ? "#FF8F12" : "",
+                  color: isActive ? "white" : "#2D3748",
+                  borderRadius: "8px",
+                  transition: "background-color 0.2s",
+                  width: "100%",
+                })}
+                className={"group "}
               >
-                {link.page}
-              </Box>
+                <Box
+                  flex="1"
+                  textAlign="left"
+                  padding={"23px"}
+                  fontSize={20}
+                  className={`flex  gap-4 text-[#223A84] group-hover:bg-[#4766C8]  group-hover:text-white`}
+                  key={link.page}
+                >
+                  <span className="group-hover:stroke-white group-hover:fill-white  stroke-[#223A84]  transition-colors duration-200">
+                    {link.icon}
+                  </span>{" "}
+                  <span> {link.page}</span>
+                </Box>
+              </NavLink>
             ))}
           </Box>
           <Box display="flex" alignItems="center" gap={2} cursor={"pointer"}>

@@ -13,7 +13,7 @@ const TextInput = ({
 }) => {
   return (
     <input
-      className="input_style"
+      className="input_style p-4 rounded-sm mt-4"
       type="text"
       name={name}
       value={value}

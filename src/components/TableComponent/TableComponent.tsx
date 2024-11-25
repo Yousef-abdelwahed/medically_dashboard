@@ -79,7 +79,6 @@ const TableComponent = ({
 
                 const maxImagesToShow = 3;
                 const remainingImages = allImages.length - maxImagesToShow;
-
                 return (
                   <motion.tr
                     key={index}
@@ -93,7 +92,7 @@ const TableComponent = ({
                       fontSize={{ base: "12px", md: "14px" }}
                       px={{ base: 2, md: 4 }}
                     >
-                      {name_ar || apiSource}
+                      {rowData?.id} {name_ar || apiSource}
                     </Td>
 
                     {/* Column 2: Images */}

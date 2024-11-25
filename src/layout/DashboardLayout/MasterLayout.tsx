@@ -15,6 +15,7 @@ const MasterLayout = () => {
           <div className="flex justify-center h-16">
             <h1 className="capitalize text-[2.5rem] ">welcome to nia</h1>
             <span className="ms-2">
+              
               <svg
                 className="size-6 lg:size-8 xl:size-10"
                 viewBox="0 0 40 40"

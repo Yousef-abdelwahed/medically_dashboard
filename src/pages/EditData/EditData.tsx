@@ -30,18 +30,40 @@ const EditData = () => {
   const location = useLocation();
   const toast = useToast();
   const { data } = location.state || {};
+  console.log(data);
   useEffect(() => {
     if (data) {
       const initialTextValues = {
         text_ar: data.text_ar || "",
         text_en: data.text_en || "",
-        text1_ar: data.text1_ar || "",
-        text1_en: data.text1_en || "",
-        position_en: data.position_en || "",
-        position_ar: data.position_ar || "",
-        name_ar: data.name_en || "",
-        name_en: data.name_ar || "",
-        caption: data.caption || "",
+        title_ar: data.title_ar || "",
+        title_en: data.title_en || "",
+        add_en: data.add_en || "",
+        add_ar: data.add_ar || "",
+        phone: data.phone || "",
+        schedule_ar: data.schedule_ar || "",
+        schedule_en: data.schedule_en || "",
+        description_ar: data.description_ar || "",
+        description_en: data.description_en || "",
+        qualification1_ar: data.qualification1_ar || "",
+        qualification1_en: data.qualification1_en || "",
+        qualification2_ar: data.qualification2_ar || "",
+        qualification2_en: data.qualification2_en || "",
+        qualification3_ar: data.qualification3_ar || "",
+        qualification3_en: data.qualification3_en || "",
+        qualification4_ar: data.qualification4_ar || "",
+        qualification4_en: data.qualification4_en || "",
+        caption_en: data.caption_en || "",
+        caption_ar: data.caption_ar || "",
+        name_ar: data.name_ar || "",
+        name_en: data.name_en || "",
+        desc_ar: data.desc_ar || "",
+        desc_en: data.desc_en || "",
+
+        question_ar: data.question_ar || "",
+        question_en: data.question_en || "",
+        answer_ar: data.answer_ar || "",
+        answer_en: data.answer_en || "",
       };
 
       const initialImagesData = {
@@ -64,6 +86,7 @@ const EditData = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     imgKey: string
   ) => {
+    console.log(imgKey);
     const files = e.target.files;
     if (files) {
       setFileImgs((prevImgs) => ({
@@ -75,20 +98,12 @@ const EditData = () => {
   return (
     <section className="container">
       <h1 className="capitalize text-[40px]">{type}</h1>
-      {data ? (
+      {data && (
         <EditFormData
           textValues={textValues}
           toast={toast}
           handleImageChange={handleImageChange}
           fileImgs={fileImgs}
-          navigate={navigate}
-          handleTextChange={handleTextChange}
-          imagesData={imagesData}
-        />
-      ) : (
-        <InsertForm
-          textValues={textValues}
-          toast={toast}
           navigate={navigate}
           handleTextChange={handleTextChange}
           imagesData={imagesData}

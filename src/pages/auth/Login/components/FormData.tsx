@@ -54,7 +54,7 @@ const FormData = () => {
 
       if (res.status === 200) {
         Cookies.set("access_token", token, { expires: 1 });
-        navigate("/dashboard/group/home");
+        navigate("/dashboard/home");
       }
       toast.success("welcome ourwebsite");
     } catch (err) {
