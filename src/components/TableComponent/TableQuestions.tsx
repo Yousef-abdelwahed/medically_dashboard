@@ -8,11 +8,11 @@ import {
   Th,
   Td,
   Button,
-  Input,
   TableContainer,
   Spinner,
   useToast,
   Flex,
+  Textarea,
 } from "@chakra-ui/react";
 import { API_BASE } from "../../api/api";
 import axios from "axios";
@@ -38,10 +38,12 @@ interface QuestionsData extends BaseData {
 type DataItem = PrinciplesOrWhyWordsData | QuestionsData;
 
 interface Props {
-  type: "principles" | "address" | "questions";
+  type: string;
+
+  subType?: "services";
 }
 
-const TableQuestions: React.FC<Props> = ({ type }) => {
+const TableQuestions: React.FC<Props> = ({ type, subType }) => {
   const [data, setData] = React.useState<DataItem[]>([]);
   const [editingData, setEditingData] = React.useState<DataItem[]>([]);
   const [savingIds, setSavingIds] = React.useState<number[]>([]);
@@ -65,8 +67,8 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
     fetchData();
   }, [type]);
 
-  // Handle input changes
-  const handleInputChange = (
+  // Handle Textarea changes
+  const handleTextareaChange = (
     id: number,
     field: string,
     value: string | number
@@ -111,7 +113,7 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
       </Flex>
     );
   }
-
+  console.log(type);
   return (
     <Box p={4}>
       <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium mb-6">
@@ -121,20 +123,37 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
         <Table variant="simple">
           <Thead>
             <Tr>
-              {type === "questions" ? (
+              {type === "questions" && (
                 <>
                   <Th>Question (EN)</Th>
                   <Th>Question (AR)</Th>
                   <Th>Answer (EN)</Th>
                   <Th>Answer (AR)</Th>
                 </>
-              ) : (
+              )}
+              {type === "address" && (
                 <>
                   <Th>Address (EN)</Th>
                   <Th>Address (AR)</Th>
                   <Th>schedule (EN)</Th>
                   <Th>schedule (AR)</Th>
                   <Th>phone</Th>
+                </>
+              )}
+              {type === "categories" && (
+                <>
+                  <Th>services (EN)</Th>
+                  <Th>services (AR)</Th>
+                  <Th>description (EN)</Th>
+                  <Th>description (AR)</Th>
+                </>
+              )}
+              {type === "services" && (
+                <>
+                  <Th>title (EN)</Th>
+                  <Th>title (AR)</Th>
+                  <Th>text (EN)</Th>
+                  <Th>text (AR)</Th>
                 </>
               )}
               <Th>Actions</Th>
@@ -146,10 +165,10 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
                 {type === "questions" && (
                   <>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).question_en}
                         onChange={(e) =>
-                          handleInputChange(
+                          handleTextareaChange(
                             item.id,
                             "question_en",
                             e.target.value
@@ -158,10 +177,10 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
                       />
                     </Td>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).question_ar}
                         onChange={(e) =>
-                          handleInputChange(
+                          handleTextareaChange(
                             item.id,
                             "question_ar",
                             e.target.value
@@ -170,10 +189,10 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
                       />
                     </Td>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).answer_en}
                         onChange={(e) =>
-                          handleInputChange(
+                          handleTextareaChange(
                             item.id,
                             "answer_en",
                             e.target.value
@@ -182,10 +201,10 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
                       />
                     </Td>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).answer_ar}
                         onChange={(e) =>
-                          handleInputChange(
+                          handleTextareaChange(
                             item.id,
                             "answer_ar",
                             e.target.value
@@ -198,26 +217,34 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
                 {type === "address" && (
                   <>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).add_en}
                         onChange={(e) =>
-                          handleInputChange(item.id, "add_en", e.target.value)
+                          handleTextareaChange(
+                            item.id,
+                            "add_en",
+                            e.target.value
+                          )
                         }
                       />
                     </Td>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).add_ar}
                         onChange={(e) =>
-                          handleInputChange(item.id, "add_ar", e.target.value)
+                          handleTextareaChange(
+                            item.id,
+                            "add_ar",
+                            e.target.value
+                          )
                         }
                       />
                     </Td>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).schedule_en}
                         onChange={(e) =>
-                          handleInputChange(
+                          handleTextareaChange(
                             item.id,
                             "schedule_en",
                             e.target.value
@@ -226,10 +253,10 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
                       />
                     </Td>
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).schedule_ar}
                         onChange={(e) =>
-                          handleInputChange(
+                          handleTextareaChange(
                             item.id,
                             "schedule_ar",
                             e.target.value
@@ -238,13 +265,120 @@ const TableQuestions: React.FC<Props> = ({ type }) => {
                       />
                     </Td>{" "}
                     <Td>
-                      <Input
+                      <Textarea
                         value={(item as QuestionsData).phone}
                         onChange={(e) =>
-                          handleInputChange(item.id, "phone", e.target.value)
+                          handleTextareaChange(item.id, "phone", e.target.value)
                         }
                       />
                     </Td>
+                  </>
+                )}
+                {subType === "services" && <Td>"categories"</Td>}
+                {type === "categories" && (
+                  <>
+                    {" "}
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).name_en}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "name_en",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).name_ar}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "name_ar",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).desc_en}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "desc_en",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).desc_ar}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "desc_ar",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>{" "}
+                  </>
+                )}
+                {type === "services" && (
+                  <>
+                    {" "}
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).title_en}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "title_en",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).title_ar}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "title_",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).desc_en}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "desc_en",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        value={(item as QuestionsData).desc_ar}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "desc_ar",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>{" "}
                   </>
                 )}
                 <Td>

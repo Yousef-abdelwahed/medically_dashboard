@@ -80,7 +80,7 @@ const Sidebar = () => {
                   display: "block",
                   padding: "0px",
                   fontSize: "18px",
-                  backgroundColor: isActive ? "#FF8F12" : "",
+                  backgroundColor: isActive ? "#4766c894" : "",
                   color: isActive ? "white" : "#2D3748",
                   borderRadius: "8px",
                   transition: "background-color 0.2s",

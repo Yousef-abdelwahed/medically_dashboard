@@ -102,7 +102,7 @@ const FormData = () => {
         />
         <button
           type="submit"
-          className="capitalize bg-primary  w-full py-[15px]  text-white rounded-[10px]"
+          className="capitalize bg-[#4766C8]  w-full py-[15px]  text-white rounded-[10px]"
         >
           login
         </button>

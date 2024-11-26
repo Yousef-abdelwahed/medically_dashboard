@@ -1,6 +1,6 @@
 import React from "react";
-import { formImage } from "../../../assets";
 import FormData from "./components/FormData";
+import { loginImg } from "../../../assets";
 
 const Login = () => {
   return (
@@ -22,7 +22,7 @@ const Login = () => {
             <FormData />
           </div>
           <figure className=" w-[60%] md:w-1/2 max-lg:mx-auto  max-md:order-0">
-            <img src={formImage} alt="login image " />
+            <img src={loginImg} alt="login image " />
           </figure>
         </div>
       </div>

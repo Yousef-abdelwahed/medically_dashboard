@@ -15,12 +15,12 @@ const EditFormData = ({
   navigate,
   handleTextChange,
   imagesData,
+  catServices,
 }) => {
   const [loading, setLoading] = React.useState(false);
   // Base URl
   const { type, id } = useParams();
   function keyChecker(formData, imagesData) {
-    console.log(fileImgs);
     if (fileImgs["img"]) {
       formData.append("img", fileImgs["img"]);
     }
@@ -259,14 +259,20 @@ const EditFormData = ({
         value: textValues.desc_en,
         placeholder: "desc_en Arabic Text",
       },
-      // {
-      //   id: 15,
-      //   label: "name (En)",
-      //   name: "name_en",
-      //   value: textValues.name_en,
-      //   placeholder: "name_en Arabic Text",
-      // },
     ];
+    const removeDuplicateServices = (services) => {
+      const uniqueServices = [];
+      // const map = new Map();
+      // [services].forEach((service) => {
+      //   if (!map.has(service.name_en)) {
+      //     map.set(service.name_en, true);
+      //     uniqueServices.push(service);
+      //   }
+      // });
+
+      return uniqueServices;
+    };
+
     const textFields =
       type === "banners" || type === "whydoc"
         ? commonFields
@@ -372,7 +378,6 @@ const EditFormData = ({
     //     textFields = [];
     //     break;
     // }
-    console.log(textFields[0]);
     return type === "services"
       ? textFields[0]?.map(({ name, value, placeholder, label, id }) => {
           return (

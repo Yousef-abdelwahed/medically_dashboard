@@ -24,6 +24,7 @@ const HomeMedically = () => {
       certificateRequest,
 
       servicesRequest,
+      categoriesRequest,
     ] = await axios.all([
       fetchData(API_BASE, `banners`),
       fetchData(API_BASE, "address"),
@@ -32,6 +33,7 @@ const HomeMedically = () => {
       fetchData(API_BASE, "offers"),
 
       fetchData(API_BASE, "services"),
+      fetchData(API_BASE, "categories"),
     ]);
     const bannerData = [bannerResponse[0]].map((item) => ({
       ...item,
@@ -57,12 +59,17 @@ const HomeMedically = () => {
       ...item,
       apiSource: "services",
     }));
+    const categoriesData = [categoriesRequest].map((item) => ({
+      ...item,
+      apiSource: "categories",
+    }));
     return {
       bannerData,
       aboutUsData,
       whyDocData,
       certificateData,
       servicesData,
+      categoriesData,
     };
   };
 
@@ -77,20 +84,19 @@ const HomeMedically = () => {
     aboutUsData,
     whyDocData,
     certificateData,
-
     servicesData,
+    categoriesData,
   } = data || {};
   if (isLoading) {
     return "loading";
   }
   const mergedData = [
     bannerData,
-
     aboutUsData,
     whyDocData,
     certificateData,
-
     servicesData,
+    categoriesData,
   ];
   const editDataRow = (data: any) => {
     const { id, apiSource, img } = data;
@@ -106,6 +112,8 @@ const HomeMedically = () => {
       navigate(`../questions/${id}`, { state: { data } });
     } else if (apiSource === "services") {
       navigate(`../services/${id}`, { state: { data } });
+    } else if (apiSource === "categories") {
+      navigate(`../categories/${id}`, { state: { data } });
     }
   };
   const deleteItem = async (id: number) => {
@@ -149,6 +157,22 @@ const HomeMedically = () => {
           </h2>
         </div>
         <TableQuestions tableHeader={tableGroupTeamHeader} type="address" />
+      </section>
+      <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
+        <div className="flex justify-between">
+          <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
+            categories
+          </h2>
+        </div>
+        <TableQuestions tableHeader={tableGroupTeamHeader} type="categories" />
+      </section>
+      <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
+        <div className="flex justify-between">
+          <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
+            services
+          </h2>
+        </div>
+        <TableQuestions tableHeader={tableGroupTeamHeader} type="services" />
       </section>
     </div>
   );
