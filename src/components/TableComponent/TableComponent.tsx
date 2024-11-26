@@ -139,15 +139,6 @@ const TableComponent = ({
                         >
                           {customIcon.editIcon}
                         </Button>
-                        {data[0]?.apiSource === "teams" && (
-                          <Button
-                            size="sm"
-                            onClick={() => openModal?.(row.id)}
-                            fontSize={{ base: "10px", md: "12px" }}
-                          >
-                            {customIcon.deleteIcon}
-                          </Button>
-                        )}
                       </Flex>
                     </Td>
                   </motion.tr>

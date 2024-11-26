@@ -96,7 +96,7 @@ const EditFormData = ({
       },
       {
         id: 3,
-        label: "ar",
+        label: "title_ar",
         name: "title_ar",
         value: textValues.title_ar,
         placeholder: "Arabic Text",
@@ -113,63 +113,63 @@ const EditFormData = ({
     const certificationsFields = [
       {
         id: 5,
-        label: "ar",
+        label: "title (AR)",
         name: "title_ar",
         value: textValues.title_ar,
         placeholder: "title Arabic Text",
       },
       {
         id: 6,
-        label: "en",
+        label: "title (EN)",
         name: "title_en",
         value: textValues.title_en,
         placeholder: "title English Text",
       },
       {
         id: 7,
-        label: "ar",
+        label: "description (AR)",
         name: "description_ar",
         value: textValues.description_ar,
         placeholder: "description_ar Arabic Text",
       },
       {
         id: 15,
-        label: "en",
+        label: "description (EN)",
         name: "description_en",
         value: textValues.description_en,
         placeholder: "description_ar Arabic Text",
       },
       {
         id: 13,
-        label: "ar",
+        label: "description (AR)",
         name: "qualification1_ar",
         value: textValues.qualification1_ar,
         placeholder: "qualification1_ar English Text",
       },
       {
         id: 14,
-        label: "en",
+        label: "description (EN)",
         name: "qualification1_en",
         value: textValues.qualification1_en,
         placeholder: "qualification1_en English Text",
       },
       {
         id: 8,
-        label: "ar",
+        label: "qualification2 (AR)",
         name: "qualification2_ar",
         value: textValues.qualification2_ar,
         placeholder: "description_en English Text",
       },
       {
         id: 8,
-        label: "en",
+        label: "qualification2 (EN)",
         name: "qualification2_en",
         value: textValues.qualification2_en,
         placeholder: "description_en English Text",
       },
       {
         id: 9,
-        label: "ar",
+        label: "qualification3 (AR)",
         name: "qualification3_ar",
         value: textValues.qualification3_ar,
         placeholder: "qualification3_ar English Text",
@@ -177,21 +177,21 @@ const EditFormData = ({
       {
         id: 10,
         label: "en",
-        name: "qualification3_en",
+        name: "qualification3 (EN)",
         value: textValues.qualification3_en,
         placeholder: "qualification3_en English Text",
       },
       {
         id: 11,
         label: "ar",
-        name: "qualification4_ar",
+        name: "qualification4 (AR)",
         value: textValues.qualification4_ar,
         placeholder: "qualification4_ar English Text",
       },
       {
         id: 12,
         label: "en",
-        name: "qualification4_en",
+        name: "qualification4 (EN)",
         value: textValues.qualification4_en,
         placeholder: "qualification4_en English Text",
       },
@@ -199,21 +199,21 @@ const EditFormData = ({
     const offersFields = [
       {
         id: 5,
-        label: "ar",
+        label: "caption (AR)",
         name: "caption_ar",
         value: textValues.caption_ar,
         placeholder: "caption_ar Arabic Text",
       },
       {
         id: 7,
-        label: "en",
+        label: "caption (EN)",
         name: "caption_en",
         value: textValues.caption_en,
         placeholder: "caption_en Arabic Text",
       },
       {
         id: 6,
-        label: "ar",
+        label: "description (AR)",
         name: "description_ar",
         value: textValues.description_ar,
         placeholder: "description_ar English Text",
@@ -221,7 +221,7 @@ const EditFormData = ({
 
       {
         id: 15,
-        label: "en",
+        label: "description (EN)",
         name: "description_en",
         value: textValues.description_en,
         placeholder: "description_en Arabic Text",
@@ -232,21 +232,21 @@ const EditFormData = ({
     const servicesFields = [
       {
         id: 5,
-        label: "ar",
+        label: "title (Ar)",
         name: "title_ar",
         value: textValues.title_ar,
         placeholder: "title_ar Arabic Text",
       },
       {
         id: 7,
-        label: "en",
+        label: "title (En)",
         name: "title_en",
         value: textValues.title_en,
         placeholder: "title_en Arabic Text",
       },
       {
         id: 6,
-        label: "ar",
+        label: "description (Ar)",
         name: "desc_ar",
         value: textValues.desc_ar,
         placeholder: "desc_ar English Text",
@@ -254,11 +254,18 @@ const EditFormData = ({
 
       {
         id: 15,
-        label: "en",
+        label: "description (En)",
         name: "desc_en",
         value: textValues.desc_en,
         placeholder: "desc_en Arabic Text",
       },
+      // {
+      //   id: 15,
+      //   label: "name (En)",
+      //   name: "name_en",
+      //   value: textValues.name_en,
+      //   placeholder: "name_en Arabic Text",
+      // },
     ];
     const textFields =
       type === "banners" || type === "whydoc"

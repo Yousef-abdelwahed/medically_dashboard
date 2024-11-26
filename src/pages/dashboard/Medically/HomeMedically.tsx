@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { API_BASE, API_IMG } from "../../../api/api";
 import { useData } from "../../../context/DataContext";
 import TableComponent from "../../../components/TableComponent/TableComponent";
+import TableQuestions from "../../../components/TableComponent/TableQuestions";
 
 const HomeMedically = () => {
   const { fetchData } = useData();
@@ -21,8 +22,7 @@ const HomeMedically = () => {
       aboutUsResponse,
       whyDocRequest,
       certificateRequest,
-      reviewsRequest,
-      questionsRequest,
+
       servicesRequest,
     ] = await axios.all([
       fetchData(API_BASE, `banners`),
@@ -30,8 +30,7 @@ const HomeMedically = () => {
       fetchData(API_BASE, "whydoc"),
       fetchData(API_BASE, "certifications"),
       fetchData(API_BASE, "offers"),
-      fetchData(API_BASE, "reviews"),
-      fetchData(API_BASE, "questions"),
+
       fetchData(API_BASE, "services"),
     ]);
     const bannerData = [bannerResponse[0]].map((item) => ({
@@ -54,27 +53,15 @@ const HomeMedically = () => {
       ...item,
       apiSource: "offers",
     }));
-    const reviewsData = [reviewsRequest[0]].map((item) => ({
-      ...item,
-      apiSource: "reviews",
-    }));
-    const questionsData = [questionsRequest[0]].map((item) => ({
-      ...item,
-      apiSource: "questions",
-    }));
     const servicesData = [servicesRequest[0]].map((item) => ({
       ...item,
       apiSource: "services",
     }));
-
     return {
       bannerData,
-      addressData,
       aboutUsData,
       whyDocData,
       certificateData,
-      reviewsData,
-      questionsData,
       servicesData,
     };
   };
@@ -87,12 +74,10 @@ const HomeMedically = () => {
   });
   const {
     bannerData,
-    addressData,
     aboutUsData,
     whyDocData,
     certificateData,
-    reviewsData,
-    questionsData,
+
     servicesData,
   } = data || {};
   if (isLoading) {
@@ -104,8 +89,7 @@ const HomeMedically = () => {
     aboutUsData,
     whyDocData,
     certificateData,
-    reviewsData,
-    questionsData,
+
     servicesData,
   ];
   const editDataRow = (data: any) => {
@@ -156,13 +140,15 @@ const HomeMedically = () => {
             Address
           </h2>
         </div>
-        <TableComponent
-          data={addressData}
-          baseImg={baseImg}
-          tableHeader={tableGroupTeamHeader}
-          editAction={editDataRow}
-          deleteItem={deleteItem}
-        />
+        <TableQuestions tableHeader={tableGroupTeamHeader} type="questions" />
+      </section>
+      <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
+        <div className="flex justify-between">
+          <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
+            questions
+          </h2>
+        </div>
+        <TableQuestions tableHeader={tableGroupTeamHeader} type="address" />
       </section>
     </div>
   );

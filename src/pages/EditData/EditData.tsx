@@ -30,9 +30,9 @@ const EditData = () => {
   const location = useLocation();
   const toast = useToast();
   const { data } = location.state || {};
-  console.log(data);
   useEffect(() => {
     if (data) {
+      console.log(data.categories);
       const initialTextValues = {
         text_ar: data.text_ar || "",
         text_en: data.text_en || "",
@@ -73,6 +73,7 @@ const EditData = () => {
         img_path: data.img_path || "",
         images: data.images || "",
       };
+
       setTextValues(initialTextValues);
       setImagesData(initialImagesData);
     }
@@ -86,7 +87,6 @@ const EditData = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     imgKey: string
   ) => {
-    console.log(imgKey);
     const files = e.target.files;
     if (files) {
       setFileImgs((prevImgs) => ({
