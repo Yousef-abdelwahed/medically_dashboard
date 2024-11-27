@@ -145,7 +145,7 @@ const HomeMedically = () => {
       <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
         <div className="flex justify-between">
           <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
-            Address
+            questions
           </h2>
         </div>
         <TableQuestions tableHeader={tableGroupTeamHeader} type="questions" />
@@ -153,7 +153,7 @@ const HomeMedically = () => {
       <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
         <div className="flex justify-between">
           <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
-            questions
+            Address
           </h2>
         </div>
         <TableQuestions tableHeader={tableGroupTeamHeader} type="address" />

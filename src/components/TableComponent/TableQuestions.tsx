@@ -33,6 +33,17 @@ interface QuestionsData extends BaseData {
   question_ar: string;
   answer_en: string;
   answer_ar: string;
+  add_en: string;
+  add_ar: string;
+  schedule_en: string;
+  schedule_ar: string;
+  phone: number;
+  name_en: string;
+  name_ar: string;
+  desc_en: string;
+  desc_ar: string;
+  title_en: string;
+  title_ar: string;
 }
 
 type DataItem = PrinciplesOrWhyWordsData | QuestionsData;
@@ -166,6 +177,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                   <>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).question_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -178,6 +190,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).question_ar}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -190,6 +203,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).answer_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -202,6 +216,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).answer_ar}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -218,6 +233,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                   <>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).add_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -230,6 +246,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).add_ar}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -242,6 +259,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).schedule_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -254,6 +272,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).schedule_ar}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -266,6 +285,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>{" "}
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).phone}
                         onChange={(e) =>
                           handleTextareaChange(item.id, "phone", e.target.value)
@@ -280,6 +300,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     {" "}
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).name_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -292,6 +313,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).name_ar}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -304,6 +326,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).desc_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -316,6 +339,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).desc_ar}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -333,6 +357,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     {" "}
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).title_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -345,6 +370,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).title_ar}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -357,6 +383,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).desc_en}
                         onChange={(e) =>
                           handleTextareaChange(
@@ -369,6 +396,7 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                     <Td>
                       <Textarea
+                        minH={"4rem"}
                         value={(item as QuestionsData).desc_ar}
                         onChange={(e) =>
                           handleTextareaChange(
