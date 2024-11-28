@@ -364,7 +364,6 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
                     </Td>
                   </>
                 )}
-                {subType === "services" && <Td>"categories"</Td>}
                 {type === "categories" && (
                   <>
                     {" "}

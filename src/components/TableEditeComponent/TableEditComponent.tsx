@@ -101,7 +101,7 @@ const TableEditComponent: React.FC<{ type: string; subType?: string }> = ({
       )
     );
   };
-  const handleFileChange = (id: number, file: File) => {
+  const handleFileChange = (id: number | string, file: File | undefined) => {
     setFileImgs((prevImgs) => ({
       ...prevImgs,
       [id]: file, // Use `id` to track the file per row
@@ -112,30 +112,24 @@ const TableEditComponent: React.FC<{ type: string; subType?: string }> = ({
     );
   };
 
-  // Save updates to server
   const saveData = async (id: number) => {
     const updatedItem = editingData.find((item) => item.id === id);
     if (updatedItem) {
-      setSavingIds((prevIds) => [...prevIds, id]); // Disable save button for this item
-
+      setSavingIds((prevIds) => [...prevIds, id]);
       try {
         const formData = new FormData();
 
-        // Append all fields to the FormData object
         for (const [key, value] of Object.entries(updatedItem)) {
-          // Handle files
           if (key === "img" && value instanceof File) {
-            formData.append(key, value); // Append the file
+            formData.append(key, value);
           } else {
-            formData.append(key, value as string); // Append other fields as strings
+            formData.append(key, value as string);
           }
         }
 
-        // Send the FormData via axios
-        await axios.put(`${API_BASE}/${type}/${id}`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+        await axios.post(`${API_BASE}/${type}/${id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+          params: { _method: "PATCH" },
         });
 
         setData((prevData) =>
@@ -163,7 +157,7 @@ const TableEditComponent: React.FC<{ type: string; subType?: string }> = ({
     }
   };
 
-  if (loading) {
+  if (loading || !editingData) {
     return (
       <Flex justifyContent="center" alignItems="center" height="100%">
         <Spinner size="lg" />
@@ -186,18 +180,15 @@ const TableEditComponent: React.FC<{ type: string; subType?: string }> = ({
           <Tbody>
             {editingData.map((item) => (
               <React.Fragment key={item.id}>
-                {/* Render editable fields */}
                 <Tr>
                   <TableRow
                     item={item}
                     type={type}
-                    savingIds={savingIds}
                     handleTextareaChange={handleTextareaChange}
                     handleFileChange={handleFileChange}
                     fileImgs={fileImgs}
                   />
 
-                  {/* Save button */}
                   <Td>
                     <Button
                       onClick={() => saveData(item.id)}
