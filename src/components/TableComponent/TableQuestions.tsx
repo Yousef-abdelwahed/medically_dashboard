@@ -14,7 +14,7 @@ import {
   Flex,
   Textarea,
 } from "@chakra-ui/react";
-import { API_BASE } from "../../api/api";
+import { API_BASE, API_IMG } from "../../api/api";
 import axios from "axios";
 
 interface BaseData {
@@ -124,16 +124,23 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
       </Flex>
     );
   }
-  console.log(type);
   return (
-    <Box p={4}>
+    <Box p={4} className="text-[#223A84]">
       <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium mb-6">
         Change text of {type} section
       </h2>
-      <TableContainer>
+      <TableContainer className="tableLayout">
         <Table variant="simple">
           <Thead>
             <Tr>
+              {type === "banners" && (
+                <>
+                  <Th>sections</Th>
+                  <Th>image</Th>
+                  <Th>text</Th>
+                  <Th>action</Th>
+                </>
+              )}
               {type === "questions" && (
                 <>
                   <Th>Question (EN)</Th>
@@ -173,6 +180,69 @@ const TableQuestions: React.FC<Props> = ({ type, subType }) => {
           <Tbody>
             {editingData.map((item) => (
               <Tr key={item.id}>
+                {type === "banners" && (
+                  <>
+                    <Td className="">
+                      <img
+                        src={`${API_IMG}/${item.img}`}
+                        alt=""
+                        className="rounded-full w-24 h-24 bg-black object-cover "
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        minH={"4rem"}
+                        value={(item as QuestionsData).title_en}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "question_ar",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        minH={"4rem"}
+                        value={(item as QuestionsData).title_ar}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "answer_en",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        minH={"4rem"}
+                        value={(item as QuestionsData).text_en}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "answer_ar",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <Textarea
+                        minH={"4rem"}
+                        value={(item as QuestionsData).text_ar}
+                        onChange={(e) =>
+                          handleTextareaChange(
+                            item.id,
+                            "answer_ar",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </Td>
+                  </>
+                )}
                 {type === "questions" && (
                   <>
                     <Td>

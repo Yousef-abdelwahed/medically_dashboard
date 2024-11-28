@@ -7,6 +7,7 @@ import { API_BASE, API_IMG } from "../../../api/api";
 import { useData } from "../../../context/DataContext";
 import TableComponent from "../../../components/TableComponent/TableComponent";
 import TableQuestions from "../../../components/TableComponent/TableQuestions";
+import TableEditComponent from "../../../components/TableEditeComponent/TableEditComponent";
 
 const HomeMedically = () => {
   const { fetchData } = useData();
@@ -16,60 +17,29 @@ const HomeMedically = () => {
   const tableGroupTeamHeader = ["name", "Image", "position", "Action"];
 
   const fetchAllData = async (fetchData: any) => {
-    const [
-      bannerResponse,
-      addressResponse,
-      aboutUsResponse,
-      whyDocRequest,
-      certificateRequest,
-
-      servicesRequest,
-      categoriesRequest,
-    ] = await axios.all([
+    const [bannerResponse, whyDocRequest, offersRequest] = await axios.all([
       fetchData(API_BASE, `banners`),
-      fetchData(API_BASE, "address"),
       fetchData(API_BASE, "whydoc"),
-      fetchData(API_BASE, "certifications"),
       fetchData(API_BASE, "offers"),
-
-      fetchData(API_BASE, "services"),
-      fetchData(API_BASE, "categories"),
     ]);
     const bannerData = [bannerResponse[0]].map((item) => ({
       ...item,
       apiSource: "banners",
     }));
-    const addressData = [addressResponse[0]].map((item) => ({
-      ...item,
-      apiSource: "address",
-    }));
-    const aboutUsData = [aboutUsResponse[0]].map((item) => ({
-      ...item,
-      apiSource: "whydoc",
-    }));
+
     const whyDocData = [whyDocRequest[0]].map((item) => ({
       ...item,
-      apiSource: "certifications",
+      apiSource: "why Doc ",
     }));
-    const certificateData = [certificateRequest[0]].map((item) => ({
+    const offersData = [offersRequest[0]].map((item) => ({
       ...item,
       apiSource: "offers",
     }));
-    const servicesData = [servicesRequest[0]].map((item) => ({
-      ...item,
-      apiSource: "services",
-    }));
-    const categoriesData = [categoriesRequest].map((item) => ({
-      ...item,
-      apiSource: "categories",
-    }));
+
     return {
       bannerData,
-      aboutUsData,
       whyDocData,
-      certificateData,
-      servicesData,
-      categoriesData,
+      offersData,
     };
   };
 
@@ -79,25 +49,11 @@ const HomeMedically = () => {
     queryFn: () => fetchAllData(fetchData),
     staleTime: 200,
   });
-  const {
-    bannerData,
-    aboutUsData,
-    whyDocData,
-    certificateData,
-    servicesData,
-    categoriesData,
-  } = data || {};
+  const { bannerData, whyDocData, offersData } = data || {};
   if (isLoading) {
     return "loading";
   }
-  const mergedData = [
-    bannerData,
-    aboutUsData,
-    whyDocData,
-    certificateData,
-    servicesData,
-    categoriesData,
-  ];
+  const mergedData = [bannerData, whyDocData, offersData];
   const editDataRow = (data: any) => {
     const { id, apiSource, img } = data;
     if (apiSource === "banners") {
@@ -128,8 +84,8 @@ const HomeMedically = () => {
     navigate(`../insert/${type}`);
   };
   return (
-    <div className=" h-[80vh]  container">
-      <section id="nia_home_page_table" className="flex flex-col gap-8">
+    <div className=" h-[80vh]  container text-[#223A84]">
+      {/* <section id="nia_home_page_table" className="flex flex-col gap-8 mt-10">
         <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium ">
           home page
         </h2>
@@ -141,8 +97,24 @@ const HomeMedically = () => {
             editAction={editDataRow}
           />
         )}
+      </section> */}
+      <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
+        <div className="flex justify-between">
+          <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
+            Banner
+          </h2>
+        </div>
+        <TableEditComponent type="banners" />
       </section>
       <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
+        <div className="flex justify-between">
+          <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
+            questions
+          </h2>
+        </div>
+        <TableQuestions tableHeader={tableGroupTeamHeader} type="questions" />
+      </section>
+      {/* <section id="ads_home_page_table" className="flex flex-col gap-8 mt-20">
         <div className="flex justify-between">
           <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
             questions
@@ -173,7 +145,7 @@ const HomeMedically = () => {
           </h2>
         </div>
         <TableQuestions tableHeader={tableGroupTeamHeader} type="services" />
-      </section>
+      </section> */}
     </div>
   );
 };

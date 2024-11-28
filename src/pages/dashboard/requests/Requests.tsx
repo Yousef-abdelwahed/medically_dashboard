@@ -1,10 +1,16 @@
 import React from "react";
+import RequestTableComponent from "./components/RequestTableComponent";
+import { API_BASE } from "../../../api/api";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../../../context/DataContext";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const Requests = () => {
   const { fetchData } = useData();
 
   // Base API
-  const domainURL = API_BASE_URL_NIA_Ads;
+  const domainURL = API_BASE;
   // const domainImg = API_IMG_Ads;
 
   const navigate = useNavigate();
@@ -22,14 +28,10 @@ const Requests = () => {
       groupContactRequest,
       solutionContactRequest,
       adsContactsSolutionRequest,
-    ] = await axios.all([
-      fetchData(API_BASE_URL_NIA_Group, `contact`),
-      fetchData(API_BASE_URL_NIA_Solution, "contacts"),
-      fetchData(API_BASE_URL_NIA_Ads, "contacts"),
-    ]);
+    ] = await axios.all([fetchData(API_BASE, `contacts`)]);
     const solutionContactData = [solutionContactRequest].map((item) => ({
       ...item,
-      apiSource: "Group",
+      apiSource: "contacts",
     }));
     return {
       groupContactData: groupContactRequest,
@@ -62,11 +64,7 @@ const Requests = () => {
     apiSource: string;
   }) => {
     // Determine the correct URL based on the apiSource
-    const url =
-      apiSource === "group"
-        ? `${API_BASE_URL_NIA_Group}/contact/${id}`
-  
-
+    const url = `${API_BASE}/contacts/${id}`;
     try {
       const response = await axios.delete(url);
       refetch();
@@ -84,20 +82,23 @@ const Requests = () => {
       console.error("Failed to delete:", error);
     }
   };
-  return <>   <section id="nia_home_page_table" className="flex flex-col gap-8 mt-10">
-  <h2 className="text-lg md:text-xl xl:text-3xl capitalize font-medium">
-    nia group
-  </h2>
-  {!isPending && (
-    <CustomerTableComponent
-      data={groupContactData}
-      baseImg={""}
-      tableHeader={tableGroupHeader}
-      deleteRow={handleDelete}
-      apiSource="group"
-    />
-  )}
-</section></>;
+  return (
+    <>
+      {" "}
+      <section id="nia_home_page_table" className="flex flex-col gap-8 mt-10">
+        
+        {!isPending && (
+          <RequestTableComponent
+            data={groupContactData}
+            baseImg={""}
+            tableHeader={tableGroupHeader}
+            deleteRow={handleDelete}
+            apiSource="group"
+          />
+        )}
+      </section>
+    </>
+  );
 };
 
 export default Requests;
